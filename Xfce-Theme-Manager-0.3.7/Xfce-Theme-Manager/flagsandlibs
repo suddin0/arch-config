@@ -1,0 +1,21 @@
+
+AM_CPPFLAGS =	-I$(top_srcdir) \
+			$(GTK_CFLAGS) \
+			$(GLIB_CFLAGS) \
+			$(GTHREAD_CFLAGS) \
+			$(XCURSOR_CFLAGS) \
+			$(XFCONF_CFLAGS) \
+			$(XFCE4UI_CFLAGS) \
+			-DPREFIX=\""${prefix}\"" \
+			-DDATADIR=\""${pkgdatadir}"\" \
+			-DSYSCONFDIR=\""${sysconfdir}/${PACKAGE}"\" \
+			-DLIBDIR=\""${libdir}/${PACKAGE}"\" \
+			-DGTK_DISABLE_DEPRECATED -DGTK_DISABLE_SINGLE_INCLUDES -DGDK_DISABLE_DEPRECATED -DGSEAL_ENABLE
+
+LIBS =	$(GLIB_LIBS) \
+		$(GTHREAD_LIBS) \
+		$(GTK_LIBS)  \
+		$(XCURSOR_LIBS) \
+		$(XFCONF_LIBS)  \
+		$(XFCE4UI_LIBS)
+

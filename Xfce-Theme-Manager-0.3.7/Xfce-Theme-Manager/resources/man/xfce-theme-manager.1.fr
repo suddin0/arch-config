@@ -1,0 +1,296 @@
+.TH "XFCE-THEME-MANAGER" "1" "0.3.4" "K.D.Hedger" ""
+.SH "NOM"
+xfce\-theme\-manager \- Un gestionnaire de thèmes pour Xfce
+.SH "RÉSUMÉ"
+.B xfce\-theme\-manager
+[option.1] ... [option.N]
+.br 
+.SH "DESCRIPTION"
+Ce manuel documente brièvement
+.B xfce\-theme\-manager.
+.br 
+xfce\-theme\-manager est un gestionnaire de thèmes permettant une configuration aisée des thèmes de bordures de fenêtres, contrôles, icônes, curseurs, fond d'écran, etc, pour Xfce4.
+.SH "FONCTIONNEMENT"
+Lorsque xfce\-theme\-manager est lancé, l'utilisateur peut effectuer les opérations suivantes :
+.br 
+
+.B [Réinitialiser le thème]
+.br 
+Annuler toutes les modifications.
+.br 
+
+.B [Sauvegarder le thème]
+.br 
+Entrez un nom de thème personnalisé à sauvegarder ou à supprimer. Vous pouvez également supprimer rapidement un thème personnalisé en cliquant sur sa miniature, tout en maintenant la touche Contrôle du clavier enfoncée.
+.br 
+
+.B [À propos]
+.br 
+Crédits et autres trucs.
+.br 
+
+.B [Onglet avancé]
+.br 
+
+.B [Regénérer la BDD]
+.br 
+Regénérer la base de données.
+.br 
+
+.B [Xfce\-Composite\-Editor]
+.br 
+Lancer xfce4\-composite\-editor (si installé).
+.br 
+Disponible ici :
+.br 
+http://keithhedger.hostingsiteforfree.com/zips/Xfce4\-Composite\-Editor.tar.gz
+.br 
+Vous devez avoir gtkdialog version 0.8.x et BASH d'installer pour utiliser l'éditeur de composition.
+.br 
+
+.B [Ajustements de l'arrière plan]
+.br 
+Definir la Luminosité et la Saturation du fond d'écran.
+.br 
+
+.B [Agencement des boutons]
+.br 
+Disposition des boutons Fermer, Maximiser, etc (certains thèmes peuvent outrepasser cette option).
+.br 
+
+.B [Position du titre]
+.br 
+Placement du titre des fenêtres (certains thèmes peuvent outrepasser cette option).
+.br 
+
+.B [Sélection de la police]
+.br 
+Police des barres de titre et des applications
+.br 
+
+.B [Taille du curseur]
+.br 
+Définir la taille du curseur si le thème le prend en charge (fonctionne avec certains, d'autres non).
+.br 
+
+.B [Options d'affichage]
+.br 
+.B [Afficher les thèmes système]
+.br 
+Afficher les thèmes installés globalement.
+.br 
+
+.B [N'afficher que les thèmes personnalisés]
+.br 
+Montre seulement les méta\-thèmes que vous avez créé, les méta\-thèmes auto\-générés ne seront pas affichés.
+.br 
+
+.B [Thèmes]
+.br 
+Afficher les méta\-thèmes installés globalement.
+.br 
+
+.B [Bordures de fenêtres]
+.br 
+Afficher les thèmes Xfwm4 installés globalement.
+.br 
+
+.B [Contrôles]
+.br 
+Afficher les thèmes GTK installés globalement.
+.br 
+
+.B [Icônes]
+.br 
+Afficher les thèmes d'icônes installés globalement.
+.br 
+
+.B [Curseurs]
+.br 
+Afficher les thèmes de curseurs de souris installés globalement.
+.br 
+
+.B [Fonds d'écran]
+.br 
+Afficher les fonds d'écran installés globalement.
+.br 
+
+Les thèmes installés localement sont toujours affichés excepté pour les méta\-themes si
+.B [N'afficher que les thèmes personnalisés]
+est activé.
+.br 
+Vous pouvez supprimer rapidement un thème personnalisé en maintenant la touche Contrôle du clavier enfoncée puis en cliquant sur sa miniature. Seuls les thèmes personnalisés que vous avez créés peuvent être supprimés et seule l'entrée de la base de données est effacée, rien n'est désinstallé de votre système.
+.br 
+Pour installer un thème GTK, d'icônes, de curseur, de bordure de fenêtre ou un fond d'écran, simplement glisser et déposer l'archive (les fonds d'écran ne doivent pas être archivés) n'importe où sur la fenêtre principale et si possible, le thème sera installé à l'endroit approprié. Toutes les installations sont locales et les formats pris en charge sont : "*.tgz","*.gz","*.zip","*.ta r","*.bz2" et les types de fonds d'écran pris en charge sont : "*.jpg","*.png","*.bmp" et "*.gif". Tout le reste devra être installé par vous\-même.
+.br 
+
+Vous devez installer unzip pour glisser/déposer les archives au format .zip.
+.br 
+
+Les miniatures sont enregistrées dans ${HOME}/.config/XfceThemeManager.
+.br 
+
+La BDD est mise à jour automatiquement au ​​glisser/déposer. Si vous effectuez plusieurs installations et désinstallation de thèmes vous pourriez devoir lancer Regénérer la BDD dans l'onglet Avancé.
+.br 
+
+Les méta\-thèmes sont des thèmes contenant un dossier gtk2 et un dossier xfwm4 (soit de bordures de fenêtres et de contrôles). S'il y a un fichier "index.theme" qui spécifie un thème d'icônes, il sera utilisé.
+.br 
+.SH "OPTIONS DE LIGNE DE COMMANDE"
+\-v, \-\-version
+.br 
+	Afficher les informations de version et quitter.
+.br 
+
+\-u, \-\-update\-db
+.br 
+	Mettre à jour la base de données.
+.br 
+
+\-r, \-\-build\-db
+.br 
+	Regénérer la base de données.
+.br 
+
+\-n, \-\-nogui
+.br 
+	Ne pas lancer l'interface graphique.
+.br 
+
+\-t, \-\-theme=ARG
+.br 
+	Définir le méta-thème à ARG.
+.br 
+
+\-c, \-\-controls=ARG
+.br 
+	Définir le thème des contrôles à ARG.
+.br 
+
+\-w, \-\-wmborder=ARG
+.br 
+	Définir le thème de bordure de fenêtres à ARG.
+.br 
+
+\-i, \-\-icons=ARG
+.br 
+	Définir le thème d'icônes à ARG.
+.br 
+
+\-p, \-\-cursors=ARG
+.br 
+	Définir le thème de curseur à ARG.
+.br 
+
+\-b, \-\-backdrop=ARG
+.br 
+	Définir le fond d'écran à ARG.
+.br 
+
+\-m, \-\-monitor
+.br 
+	Définir sur quel moniteur changer le fond d'écran (par défaut 0)
+.br 
+	\-m peut être utilisé à plusieurs reprise sur la ligne de commande,
+.br 
+	la dernière valeur est utilisée, cela vous permet de définir des
+.br 
+	fonds d'écran pour plusieurs moniteurs en une seule fois.
+.br 
+
+\-a, \-\-panel=ARG
+.br 
+	Définir quel tableau de bord modifier (par défaut 1)
+.br 
+	\-a peut être utilisé à plusieurs reprise sur la ligne de commande,
+.br 
+	la dernière valeur est utilisée, cela vous permet de définir des
+.br 
+	données pour plusieurs tableaux de bord en une seule fois.
+.br 
+
+\-z, \-\-panel\-size=ARG
+.br 
+	Définir la taille de tableau de bord à ARG
+.br 
+
+\-y, \-\-panel\-style=ARG
+.br 
+	Définir le style du tableau de bord à ARG
+.br 
+
+\-g, \-\-panel\-image=ARG
+.br 
+	Définir le chemin vers l'image du tableau de bord à ARG
+.br 
+
+\-d, \-\-panel\-alpha=ARG
+.br 
+	Définir l'opacité du tableau de bord à ARG (échelle de 0\-100)
+.br 
+
+\-o, \-\-panel\-colour=ARG
+.br 
+	Définir la couleur du tableau de bord à ARG en hexadécimal, soit
+.br 
+	ff00ff. ARG DOIT avoir exactement 6 caractères hexadécimal.
+.br 
+
+\-l, \-\-list=ARG
+.br 
+	Lister les entrées de la BDD, où ARG peut être "*Ctwcib".
+.br 
+
+	Où 'C' affiche les thèmes personnalisés, 't' affiche les thèmes, 'w' affiche les thèmes de bordure de fenêtres, 'c' affiche les thèmes des contrôles, 'i' affiche les thèmes d'icônes et 'b' affiche les fonds d'écran. Si le premier/seul caractère est un '*' toutes les entrées sont affichées.
+.br 
+
+\-?, \-\-help
+.br 
+	Afficher l'aide.
+.br 
+
+Les options tcwipblvh? équivalent toutes à \-n.
+.br 
+.SH "EXEMPLES"
+Un certain nombre d'exemples de scripts pour une utilisation en ligne de commande peuvent être trouvés dans /PREFIX/share/Xfce\-Theme\-Manager/scripts.
+
+\fBRandomGTK\fR
+.br 
+Définir un thème GTK aléatoire.
+
+.br 
+\fBRandomWMBorder\fR
+.br 
+Définir un thème de bordure de fenêtres aléatoire.
+
+.br 
+\fBRandomWallpaper\fR
+.br 
+Définir un fond d'écran aléatoire sur tous les moniteurs.
+
+.br 
+\fBRandomAll\fR
+.br 
+Faire tout ce qui précède. \- ATTENTION ! cela peut créer des combinaisons irritantes pour les yeux !
+
+.br 
+\fBSequentialGTK\fR
+.br 
+Chaque fois que le script est lancé, le thème GTK suivant d'une liste triée est utilisé.
+
+.br 
+\fBSequentialWMBorder\fR
+.br 
+Chaque fois que le script est lancé, le thème de bordure de fenêtres suivant d'une liste triée est utilisé.
+
+.br 
+\fBSequentialWallpaper\fR
+.br 
+Chaque fois que le script est lancé, le fond d'écran suivant d'une liste triée est utilisé.
+
+.br 
+.SH "AUTEUR"
+.B Xfce\-Theme\-Manager
+est écrit par Keith Hedger
+ 
+Ce manuel a été écrit par Eduardo Echeverria <echevemaster@gmail.com>, pour le projet Fedora (et peut être utiliser par les autres), modifié par Keith Hedger, traduit par Pablo Morales Romero <pg.morales.romero@gmail.com> (Espagnol), Martin F. Schumann <mfs@mfs.name> (Allemand), Michał Olber (Polonais), Moatib <moatib@ymail.com> (Français).
+

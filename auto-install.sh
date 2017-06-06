@@ -27,13 +27,36 @@ read -a lchoice
 
 printf "\e[38;5;82mChose a boot loader\n\e[39m"
 
-printf "\e[38;5;11m1: Syslinux : A simple and light weight bootloader\n\e[39m"
-printf "\e[38;5;11m2: Grub2    : A complete bootloader with a lot of options\n\n\e[39m"
+printf "\e[38;5;226m1: Syslinux : A simple and light weight bootloader\n\e[39m"
+printf "\e[38;5;226m2: Grub2    : A complete bootloader with a lot of options\n\n\e[39m"
 
-printf "\e[38;5;82mDefault bootloader: Syslinux\e[39m"
+printf "\e[38;5;82mDefault bootloader: Syslinux\n\n\e[39m"
+printf "\e[38;5;82m: \e[39m"
 read bootloader
 
 if [[ $bootloader == "2" ]]
 then
-  echo "install Grub2"
+  yes y | pacman -S grub
+else
+  yes y | pacman -S grub
+  yes y | pacman -S gptfdisk
+  syslinux-install_update -i -a -m
+
 fi
+
+yes "" | pacman -S xorg
+yes "" | pacman -S xorg-servers
+
+yes y  | pacman -S xorg-xinit xorg-xterm dialog wpa_supplicant wpa_supplicant_gui\
+networkmanager
+
+yes "" | pacman -S xfce4
+yes "" | pacman -S xfce4-goodies
+
+yes y  | pacman -S python python-setuptools python-pip sqlite mpdecimal xz tk
+yes y  | pacman -S python2 python2-setuptools python2-pip
+
+yes y  |  pacman -S wget
+
+
+printf "\e[38;5;226mDo not forget to set your pertition to boot in /boot/syslinux/syslinux.cfg\n\e[39m"

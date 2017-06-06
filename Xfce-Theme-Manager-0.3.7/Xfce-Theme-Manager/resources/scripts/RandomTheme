@@ -1,0 +1,33 @@
+#!/bin/bash -e
+
+#©keithhedger Fri 2 Aug 12:20:31 BST 2013 kdhedger68713@gmail.com
+
+THEMEARRAY=
+ARRAYNUM=0
+
+# C = just custom themes
+# t = meta themes
+# Ct both
+
+THEMESORT=C
+
+makeArray ()
+{
+	while read
+		do
+			if [ ${REPLY:0:1} != "[" ];then
+				THEMEARRAY[$ARRAYNUM]="$REPLY"
+				((ARRAYNUM=ARRAYNUM+1))
+			fi
+		done< <(xfce-theme-manager -l $THEMESORT)
+}
+
+
+makeArray
+
+THEMENUMBER=$RANDOM
+MAXFILES=${#THEMEARRAY[@]}
+THEMENUM=$(( (THEMENUMBER %=  MAXFILES) ))
+THEME=${THEMEARRAY[THEMENUM]}
+
+xfce-theme-manager  -t "$THEME"
