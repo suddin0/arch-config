@@ -1,12 +1,21 @@
 #!/bin/bash
 
+clear
+
+file="/etc/localtime"
+if [ -f "$file" ]
+then
+	rm -f $file
+fi
 printf "\e[38;5;82mTime is set as Europe/Paris\n\e[39m"
 ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
+
+
 printf "\e[38;5;82mComputer name: \e[39m"
 read cname
 echo $cname > /etc/hostname
 
-printf "\e[38;5;82mWould you like to set your computer in French? y/n \e[39m"
+printf "\e[38;5;82mWould you like to set your computer in French? y/N \e[39m"
 read -a lchoice
 if [[ $lchoice == "y" ]];
 then
@@ -21,8 +30,6 @@ then
   LC_MEASUREMENT=fr_FR.UTF-8
   LC_TIME=fr_FR.UTF-8
   LC_ADDRESS=fr_FR.UTF-8" > /etc/locale.conf
-else
-  echo "done nothing"
 fi
 
 printf "\e[38;5;82mChose a boot loader\n\e[39m"
@@ -57,9 +64,9 @@ yes "" | pacman -S xorg
 yes "" | pacman -S xorg-servers
 
 #install the Network softwares and enabling network manager
-yes y  | pacman -S xorg-xinit xorg-xterm dialog wpa_supplicant wpa_supplicant_gui\
-networkmanager network-manager-applet dnsmasq bluez ppp dhclient modemmanager\
-wicd
+yes y  | pacman -S xorg-xinit xorg-xterm dialog wpa_supplicant wpa_supplicant_gui
+yes y  | pacman -S networkmanager network-manager-applet dnsmasq bluez ppp dhclient
+yes y  | pacman -S modemmanager wicd
 systemctl enable NetworkManaget.service
 
 #install the Desktop Environment
@@ -68,9 +75,9 @@ yes "" | pacman -S xfce4-goodies
 
 #installing the softwares
 yes y  | pacman -S python python-setuptools python-pip sqlite mpdecimal xz tk
-yes y  | pacman -S python2 python2-setuptools python2-pip\
-gcc thuner sakura file-roller libcanberra gvfs vlc nautilus chromium firefox\
-pulseaudio pulseaudio-alsa pavucontrol wget
+yes y  | pacman -S python2 python2-setuptools python2-pip
+yes y  | pacman -S gcc thunar sakura file-roller libcanberra gvfs vlc nautilus
+yes y  | pacman -S chromium firefox pulseaudio pulseaudio-alsa pavucontrol wget
 
 
 #install sublime text
