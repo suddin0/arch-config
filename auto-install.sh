@@ -36,11 +36,12 @@ read bootloader
 
 if [[ $bootloader == "2" ]]
 then
-  printf "\e[38;5;226mprovide your main partition where iso is installed (Ex: /dev/sda)\n\e[39m"
+  printf "\e[38;5;226mProvide your main partition where iso is installed (Ex: /dev/sda)\n\e[39m"
   read grubpart
   yes y | pacman -S grub
-  if [[ $grubpart == ""]];
+  if [[ $grubpart == "" ]];
   then
+    printf "\e[38;5;226mPartition is not specified. Grub will be installed in /dev/sda\n\e[39m"
     grub-install --target=i386-pc /dev/sda
   else
     grub-install --target=i386-pc $grubpart
@@ -71,26 +72,32 @@ yes y  | pacman -S python2 python2-setuptools python2-pip\
 gcc thuner sakura file-roller libcanberra gvfs vlc nautilus chromium firefox\
 pulseaudio pulseaudio-alsa pavucontrol wget
 
-systemctl enable numLockOnTty
 
 #install sublime text
-curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
+curl -O https://download.sublimetext.com/sublimehq-pub.gpg
+pacman-key --add sublimehq-pub.gpg
+pacman-key --lsign-key 8A8F901A
+rm sublimehq-pub.gpg
 echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/dev/x86_64" | sudo tee -a /etc/pacman.conf
+sudo pacman -S sublime-text
 
 #installing theme manager
-bash theme-manager/configure
-make
-make install
+#bash theme-manager/configure
+#make
 
+
+#installing Display manager to login
 printf "\e[38;5;82mChose a Display Manager\n\e[39m"
 
 printf "\e[38;5;226m1: SDDM    : SDDM is a modern display manager for X11 and \
 Wayland aiming to be fast, simple and beautiful.\n\e[39m"
 printf "\e[38;5;226m2: LightDM : LightDM is a cross-desktop display manager.\n\n\e[39m"
 
+
 printf "\e[38;5;82mDefault Display Manager: SDDM\n\n\e[39m"
 printf "\e[38;5;82m: \e[39m"
-if [[ $bootloader == "2" ]]
+read dmopt
+if [[ $dmopt == "2" ]]
 then
   yes y | pacman -S lightdm lightdm-gtk-greeter
   systemctl enable lightdm
