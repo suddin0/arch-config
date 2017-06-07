@@ -32,33 +32,8 @@ then
   LC_ADDRESS=fr_FR.UTF-8" > /etc/locale.conf
 fi
 
-printf "\e[38;5;82mChose a boot loader\n\e[39m"
-
-printf "\e[38;5;226m1: Syslinux : A simple and light weight bootloader\n\e[39m"
-printf "\e[38;5;226m2: Grub2    : A complete bootloader with a lot of options\n\n\e[39m"
-
-printf "\e[38;5;82mDefault bootloader: Syslinux\n\n\e[39m"
-printf "\e[38;5;82m: \e[39m"
-read bootloader
-yes "" | pacman -Syu xorg
-
-if [[ $bootloader == "2" ]]
-then
-  printf "\e[38;5;226mProvide your main partition where iso is installed (Ex: /dev/sda)\n\e[39m"
-  read grubpart
-  yes y | pacman -S grub
-  if [[ $grubpart == "" ]];
-  then
-    printf "\e[38;5;226mPartition is not specified. Grub will be installed in /dev/sda\n\e[39m"
-    grub-install --target=i386-pc /dev/sda
-  else
-    grub-install --target=i386-pc $grubpart
-  fi
-else
-  yes y | pacman -S syslinux
-  yes y | pacman -S gptfdisk
-  syslinux-install_update -i -a -m
-fi
+#update pkg lists and upgrade
+yes "" | pacman -Syu
 
 #install the graphique softwares
 yes "" | pacman -S xorg
@@ -83,14 +58,46 @@ yes y  | pacman -S vim leafpad
 
 
 #install Yaourt Package manager
-echo "[archlinuxfr]
+echo "
+
+[archlinuxfr]
 SigLevel = Never
-Server = http://repo.archlinux.fr/$arch " >> /etc/pacman.conf
-pacman -Sy yaourt
+Server = http://repo.archlinux.fr/\$arch " >> /etc/pacman.conf
+yes y | pacman -Sy yaourt
 
 #installing theme manager
 #bash theme-manager/configure
 #make
+
+
+
+printf "\e[38;5;82mChose a boot loader\n\e[39m"
+
+printf "\e[38;5;226m1: Syslinux : A simple and light weight bootloader\n\e[39m"
+printf "\e[38;5;226m2: Grub2    : A complete bootloader with a lot of options\n\n\e[39m"
+
+printf "\e[38;5;82mDefault bootloader: Syslinux\n\n\e[39m"
+printf "\e[38;5;82m: \e[39m"
+read bootloader
+yes "" | pacman -Syu
+
+if [[ $bootloader == "2" ]]
+then
+  printf "\e[38;5;226mProvide your main partition where iso is installed (Ex: /dev/sda)\n\e[39m"
+  read grubpart
+  yes y | pacman -S grub
+  if [[ $grubpart == "" ]];
+  then
+    printf "\e[38;5;226mPartition is not specified. Grub will be installed in /dev/sda\n\e[39m"
+    grub-install --target=i386-pc /dev/sda
+  else
+    grub-install --target=i386-pc $grubpart
+  fi
+else
+  yes y | pacman -S syslinux
+  yes y | pacman -S gptfdisk
+  syslinux-install_update -i -a -m
+fi
 
 
 #installing Display manager to login
