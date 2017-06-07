@@ -40,6 +40,7 @@ printf "\e[38;5;226m2: Grub2    : A complete bootloader with a lot of options\n\
 printf "\e[38;5;82mDefault bootloader: Syslinux\n\n\e[39m"
 printf "\e[38;5;82m: \e[39m"
 read bootloader
+yes "" | pacman -Syu xorg
 
 if [[ $bootloader == "2" ]]
 then
@@ -66,7 +67,7 @@ yes "" | pacman -S xorg-servers
 #install the Network softwares and enabling network manager
 yes y  | pacman -S xorg-xinit xorg-xterm dialog wpa_supplicant wpa_supplicant_gui
 yes y  | pacman -S networkmanager network-manager-applet dnsmasq bluez ppp dhclient
-yes y  | pacman -S modemmanager wicd
+yes y  | pacman -S modemmanager wicd wicd-gtk
 systemctl enable NetworkManaget.service
 
 #install the Desktop Environment
@@ -78,15 +79,14 @@ yes y  | pacman -S python python-setuptools python-pip sqlite mpdecimal xz tk
 yes y  | pacman -S python2 python2-setuptools python2-pip
 yes y  | pacman -S gcc thunar sakura file-roller libcanberra gvfs vlc nautilus
 yes y  | pacman -S chromium firefox pulseaudio pulseaudio-alsa pavucontrol wget
+yes y  | pacman -S vim leafpad
 
 
-#install sublime text
-curl -O https://download.sublimetext.com/sublimehq-pub.gpg
-pacman-key --add sublimehq-pub.gpg
-pacman-key --lsign-key 8A8F901A
-rm sublimehq-pub.gpg
-echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/dev/x86_64" | sudo tee -a /etc/pacman.conf
-sudo pacman -S sublime-text
+#install Yaourt Package manager
+echo "[archlinuxfr]
+SigLevel = Never
+Server = http://repo.archlinux.fr/$arch " >> /etc/pacman.conf
+pacman -Sy yaourt
 
 #installing theme manager
 #bash theme-manager/configure
