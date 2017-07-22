@@ -53,6 +53,7 @@ yes "" | pacman -S xfce4-goodies
 yes y  | pacman -S python python-setuptools python-pip sqlite mpdecimal xz tk
 yes y  | pacman -S python2 python2-setuptools python2-pip
 yes y  | pacman -S gcc thunar sakura file-roller libcanberra gvfs vlc nautilus
+yes y  | pacman -S gdb
 yes y  | pacman -S chromium firefox pulseaudio pulseaudio-alsa pavucontrol wget
 yes y  | pacman -S vim leafpad
 
