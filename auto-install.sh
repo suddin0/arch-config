@@ -24,7 +24,7 @@ then
 fi
 
 
-
+#create new user and it's password
 printf "\e[38;5;82mCreate a new user :  y, N\n\e[39m"
 read creat_n_user
 if [[ $creat_n_user == +("y"|"Y"|"yes") ]]
@@ -90,10 +90,36 @@ yes y  | pacman -S gcc clang thunar sakura file-roller libcanberra gvfs nautilus
 yes y  | pacman -S vim leafpad qt4
 yes ""  | pacman -S qt5
 yes "" | pacman -S vlc
-yes y  | pacman -S gdb valgrind 
+yes y  | pacman -S gdb valgrind
 yes y  | pacman -S chromium pulseaudio pulseaudio-alsa pavucontrol wget ruby curl
 yes "" | pacman -S firefox
 yes y  | pacman -S pepper-flash
+
+#graphic manipulation
+printf "\e[38;5;82mInstall image editor tooms like gimp, inkscape, etc... Y, n\n\e[39m"
+read hard_utils
+if [[ $hard_utils != +("n"|"N"|"no"|"non") ]]
+then
+  yes y  | pacman -S inkscape gimp
+fi
+
+#install hardware manip utiles
+printf "\e[38;5;82mInstall hardware utils Y, n\n\e[39m"
+read hard_utils
+if [[ $hard_utils != +("n"|"N"|"no"|"non") ]]
+then
+  yes y  | pacman -S arduino
+fi
+
+#install office tools
+printf "\e[38;5;82mInstall libre office Y, n\n\e[39m"
+read hard_utils
+if [[ $hard_utils != +("n"|"N"|"no"|"non") ]]
+then
+  yes y  | pacman -S inkscape gimp
+fi
+
+
 
 
 #install Yaourt Package manager
@@ -120,7 +146,7 @@ then
 
 fi
 
-
+#install virtual machine
 printf "\e[38;5;82mWould you like to install virtual box: Y,n \n\e[39m"
 read v_machine
 if [[ $v_machine != +("n"|"N"|"no"|"non") ]]
@@ -137,12 +163,23 @@ then
 fi
 
 
+#add user to sudo groupe . It is done now as the sudo is installed by now
+if [[ $v_machine != +("n"|"N"|"no"|"non") ]]
+then
+  usermod -aG sudo $n_user_name
+fi
 
+
+
+#Install a boot loader
 
 printf "\e[38;5;82mChose a boot loader\n\e[39m"
 
 printf "\e[38;5;226m1: Syslinux : A simple and light weight bootloader\n\e[39m"
 printf "\e[38;5;226m2: Grub2    : A complete bootloader with a lot of options\n\n\e[39m"
+
+
+
 
 printf "\e[38;5;82mDefault bootloader: Syslinux\n\n\e[39m"
 printf "\e[38;5;82m: \e[39m"
@@ -187,6 +224,8 @@ then
 else
   yes y | pacman -S sddm
   systemctl enable sddm
+  cp -rf  ./themes/deepin /usr/share/sddm/themes/deepin
+  cat     ./conf/sddm.conf > /etc/sddm.conf
 fi
 
 
