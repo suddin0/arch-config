@@ -18,7 +18,7 @@ echo $cname > /etc/hostname
 
 printf "\e[38;5;82m: would you like to set a root password? y, N\n\e[39m"
 read root_pass
-if [ $root_pass == 'y' || $root_pass == 'Y' || $root_pass == "Yes" ]
+if [ [$root_pass == 'y'] || [$root_pass == 'Y'] || [$root_pass == "Yes"] ]
 then
 	passwd
 fi
@@ -27,7 +27,7 @@ fi
 
 printf "\e[38;5;82m: Create a new user :  y, N\n\e[39m"
 read creat_n_user
-if [ creat_n_user == 'y' || creat_n_user == 'Y' || creat_n_user == "Yes" ]
+if [ [$creat_n_user == 'y'] || [$creat_n_user == 'Y'] || [$creat_n_user == "Yes"] ]
 then
 	printf "\e[38;5;82m: New user name :\n\e[39m"
 	read n_user_name
@@ -80,7 +80,7 @@ yes y  | pacman -S python2 python2-setuptools python2-pip
 yes y  | pacman -S gcc clang thunar sakura file-roller libcanberra gvfs vlc nautilus
 yes y  | pacman -S gdb valgrind
 yes y  | pacman -S chromium firefox pulseaudio pulseaudio-alsa pavucontrol wget
-yes y  | pacman -S vim leafpad
+yes y  | pacman -S vim leafpad tk qt4 qt5 vlc
 
 
 #install Yaourt Package manager
