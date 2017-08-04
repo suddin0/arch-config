@@ -31,7 +31,6 @@ if [[ $creat_n_user == +("y"|"Y"|"yes") ]]
 then
   printf "\e[38;5;82mNew user name :\n\e[39m"
   read n_user_name
-  use 
   radd -m $n_user_name
   printf "\e[38;5;82m:The user $n_user_name is created\n\e[39m"
   printf "\e[38;5;82m:Enter a password for  $n_user_name:\n\e[39m"
