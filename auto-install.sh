@@ -16,25 +16,25 @@ read cname
 echo $cname > /etc/hostname
 
 
-printf "\e[38;5;82m: would you like to set a root password? y, N\n\e[39m"
+printf "\e[38;5;82mWould you like to set a root password? y, N\n\e[39m"
 read root_pass
-if [ [$root_pass == 'y'] || [$root_pass == 'Y'] || [$root_pass == "Yes"] ]
+if [[ $root_pass == +("y"|"Y"|"yes") ]]
 then
 	passwd
 fi
 
 
 
-printf "\e[38;5;82m: Create a new user :  y, N\n\e[39m"
+printf "\e[38;5;82mCreate a new user :  y, N\n\e[39m"
 read creat_n_user
-if [[$creat_n_user == 'y'] || [$creat_n_user == 'Y'] || [$creat_n_user == "Yes"]]
+if [[ $creat_n_user == +("y"|"Y"|"yes") ]]
 then
-	printf "\e[38;5;82m: New user name :\n\e[39m"
-	read n_user_name
-	useradd -m $n_user_name
-	printf "\e[38;5;82m:The user $n_user_name is created\n\e[39m"
-	printf "\e[38;5;82m:Enter a password for  $n_user_name:\n\e[39m"
-	passwd $n_user_name
+  printf "\e[38;5;82mNew user name :\n\e[39m"
+  read $n_user_name
+  useradd -m $n_user_name
+  printf "\e[38;5;82m:The user $n_user_name is created\n\e[39m"
+  printf "\e[38;5;82m:Enter a password for  $n_user_name:\n\e[39m"
+  passwd $n_user_name
 fi
 
 
@@ -42,7 +42,7 @@ fi
 
 printf "\e[38;5;82mWould you like to set your computer in French? y/N \e[39m"
 read -a lchoice
-if [[ $lchoice == "y" ]];
+if [[ $lchoice == +("y"|"Y"|"yes") ]];
 then
   echo "
   LC_PAPER=fr_FR.UTF-8
@@ -55,37 +55,47 @@ then
   LC_MEASUREMENT=fr_FR.UTF-8
   LC_TIME=fr_FR.UTF-8
   LC_ADDRESS=fr_FR.UTF-8" > /etc/locale.conf
+  localectl set-locale LANG=fr_FR.UTF-8
+  export LANG=C
+
 fi
 
 #update pkg lists and upgrade
+printf "\e[38;5;82mUpdating corrent repo and softwares\n\e[39m"
 yes "" | pacman -Syu
 
 #install the graphique softwares
+printf "\e[38;5;82mInstalling graphical utils\n\e[39m"
 yes "" | pacman -S xorg
 yes "" | pacman -S xorg-servers xorg-drivers
 
 #install the Network softwares and enabling network manager
+printf "\e[38;5;82mInstalling Network utils\n\e[39m"
 yes y  | pacman -S xorg-xinit xorg-xterm dialog wpa_supplicant wpa_supplicant_gui
 yes y  | pacman -S networkmanager network-manager-applet dnsmasq bluez ppp dhclient
 yes y  | pacman -S modemmanager
+printf "\e[38;5;82mEnabling NetworkManager\n\e[39m"
 systemctl enable NetworkManaget.service
 
 #install the Desktop Environment
-yes "" | pacman -S xfce4 fish thunar
+printf "\e[38;5;82mInstalling Xfce4 environment and cie\n\e[39m"
+yes "" | pacman -S xfce4 fish thunar gnome-disk-utility
 yes "" | pacman -S xfce4-goodies
 
 #installing the softwares
+printf "\e[38;5;82mInstalling languages, libraries and varias other tools\n\e[39m"
 yes y  | pacman -S python python-setuptools python-pip sqlite mpdecimal xz tk
 yes y  | pacman -S python2 python2-setuptools python2-pip
 yes y  | pacman -S gcc clang thunar sakura file-roller libcanberra gvfs nautilus
 yes ""  | pacman -S vlc
-yes y  | pacman -S gdb valgrind
+yes y  | pacman -S gdb valgrind 
 yes y  | pacman -S chromium pulseaudio pulseaudio-alsa pavucontrol wget
 yes ""  | pacman -S firefox
-yes y  | pacman -S vim leafpad tk qt4 qt5 vlc
+yes y  | pacman -S vim leafpad tk qt4 qt5
 
 
 #install Yaourt Package manager
+printf "\e[38;5;82mSeting yourt Package manager\n\e[39m"
 echo "
 
 [archlinuxfr]
@@ -96,6 +106,34 @@ yes y | pacman -Sy yaourt
 #installing theme manager
 #bash theme-manager/configure
 #make
+
+printf "\e[38;5;82mSetting themes on /usr/share/themes \n\e[39m"
+cp -rf ./themes/arc-dark /usr/share/themes/Arc-Dark
+
+if [[ $creat_n_user == +("y"|"Y"|"yes") ]]
+then
+  printf "\e[38;5;82mSetting Conf files \n\e[39m"
+  echo ./conf/fish-conf.fish > /home/$n_user_name/.config/fish/config.fish
+  cp -f ./conf/tmux.conf /home/$n_user_name/.tmux.conf
+
+fi
+
+
+printf "\e[38;5;82mWould you like to install virtual box: Y,n \n\e[39m"
+read v_machine
+if [[ $v_machine != +("n"|"N"|"no"|"non") ]]
+then
+  MACHINE_TYPE=`uname -m`
+  if [[ $MACHINE_TYPE == "x86_64" ]]
+  then
+    printf "\e[38;5;82mInstalling Virtual machine for x86_64 arch\n\e[39m"
+    wget "http://download.virtualbox.org/virtualbox/5.1.26/VirtualBox-5.1.26-117224-Linux_amd64.run" | sh
+  else
+    printf "\e[38;5;82mInstalling Virtual machine for x86 arch\n\e[39m"
+    wget "http://download.virtualbox.org/virtualbox/5.1.26/VirtualBox-5.1.26-117224-Linux_x86.run" | sh
+  fi
+fi
+
 
 
 
@@ -122,6 +160,7 @@ then
     grub-install --target=i386-pc $grubpart
   fi
 else
+  printf "\e[38;5;82mInstalling syslinux and setting it up\n\e[39m"
   yes y | pacman -S syslinux
   yes y | pacman -S gptfdisk
   syslinux-install_update -i -a -m
@@ -147,6 +186,7 @@ else
   yes y | pacman -S sddm
   systemctl enable sddm
 fi
+
 
 
 printf "\e[38;5;226mDo not forget to set your pertition to boot in /boot/syslinux/syslinux.cfg\n\e[39m"
