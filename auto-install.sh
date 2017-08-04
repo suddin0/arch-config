@@ -15,6 +15,31 @@ printf "\e[38;5;82mComputer name: \e[39m"
 read cname
 echo $cname > /etc/hostname
 
+
+printf "\e[38;5;82m: would you like to set a root password? y, N\n\e[39m"
+read root_pass
+if [ $root_pass == 'y' || $root_pass == 'Y' || $root_pass == "Yes" ]
+then
+	passwd
+fi
+
+
+
+printf "\e[38;5;82m: Create a new user :  y, N\n\e[39m"
+read creat_n_user
+if [ creat_n_user == 'y' || creat_n_user == 'Y' || creat_n_user == "Yes" ]
+then
+	printf "\e[38;5;82m: New user name :\n\e[39m"
+	read n_user_name
+	useradd -m $n_user_name
+	printf "\e[38;5;82m:The user $n_user_name is created\n\e[39m"
+	printf "\e[38;5;82m:Enter a password for  $n_user_name:\n\e[39m"
+	passwd $n_user_name
+fi
+
+
+
+
 printf "\e[38;5;82mWould you like to set your computer in French? y/N \e[39m"
 read -a lchoice
 if [[ $lchoice == "y" ]];
@@ -37,23 +62,23 @@ yes "" | pacman -Syu
 
 #install the graphique softwares
 yes "" | pacman -S xorg
-yes "" | pacman -S xorg-servers
+yes "" | pacman -S xorg-servers xorg-drivers
 
 #install the Network softwares and enabling network manager
 yes y  | pacman -S xorg-xinit xorg-xterm dialog wpa_supplicant wpa_supplicant_gui
 yes y  | pacman -S networkmanager network-manager-applet dnsmasq bluez ppp dhclient
-yes y  | pacman -S modemmanager wicd wicd-gtk
+yes y  | pacman -S modemmanager
 systemctl enable NetworkManaget.service
 
 #install the Desktop Environment
-yes "" | pacman -S xfce4
+yes "" | pacman -S xfce4 fish thunar
 yes "" | pacman -S xfce4-goodies
 
 #installing the softwares
 yes y  | pacman -S python python-setuptools python-pip sqlite mpdecimal xz tk
 yes y  | pacman -S python2 python2-setuptools python2-pip
-yes y  | pacman -S gcc thunar sakura file-roller libcanberra gvfs vlc nautilus
-yes y  | pacman -S gdb
+yes y  | pacman -S gcc clang thunar sakura file-roller libcanberra gvfs vlc nautilus
+yes y  | pacman -S gdb valgrind
 yes y  | pacman -S chromium firefox pulseaudio pulseaudio-alsa pavucontrol wget
 yes y  | pacman -S vim leafpad
 
