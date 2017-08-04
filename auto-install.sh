@@ -77,9 +77,11 @@ yes "" | pacman -S xfce4-goodies
 #installing the softwares
 yes y  | pacman -S python python-setuptools python-pip sqlite mpdecimal xz tk
 yes y  | pacman -S python2 python2-setuptools python2-pip
-yes y  | pacman -S gcc clang thunar sakura file-roller libcanberra gvfs vlc nautilus
+yes y  | pacman -S gcc clang thunar sakura file-roller libcanberra gvfs nautilus
+yes ""  | pacman -S vlc
 yes y  | pacman -S gdb valgrind
-yes y  | pacman -S chromium firefox pulseaudio pulseaudio-alsa pavucontrol wget
+yes y  | pacman -S chromium pulseaudio pulseaudio-alsa pavucontrol wget
+yes ""  | pacman -S firefox
 yes y  | pacman -S vim leafpad tk qt4 qt5 vlc
 
 
