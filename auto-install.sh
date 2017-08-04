@@ -30,8 +30,9 @@ read creat_n_user
 if [[ $creat_n_user == +("y"|"Y"|"yes") ]]
 then
   printf "\e[38;5;82mNew user name :\n\e[39m"
-  read $n_user_name
-  useradd -m $n_user_name
+  read n_user_name
+  use 
+  radd -m $n_user_name
   printf "\e[38;5;82m:The user $n_user_name is created\n\e[39m"
   printf "\e[38;5;82m:Enter a password for  $n_user_name:\n\e[39m"
   passwd $n_user_name
@@ -64,7 +65,7 @@ yes "" | pacman -Syu
 
 #install the graphique softwares
 printf "\e[38;5;82mInstalling graphical utils\n\e[39m"
-yes "" | pacman -S xorg
+yes "" | pacman -S xorg sudo
 yes "" | pacman -S xorg-servers xorg-drivers
 
 #install the Network softwares and enabling network manager
@@ -86,7 +87,7 @@ yes y  | pacman -S python python-setuptools python-pip sqlite mpdecimal xz tk
 yes y  | pacman -S python2 python2-setuptools python2-pip
 yes y  | pacman -S gcc clang thunar sakura file-roller libcanberra gvfs nautilus
 yes y  | pacman -S vim leafpad qt4
-yes ""  | pacman -S qt5
+yes "" | pacman -S qt5
 yes "" | pacman -S vlc
 yes y  | pacman -S gdb valgrind
 yes y  | pacman -S chromium pulseaudio pulseaudio-alsa pavucontrol wget ruby curl
@@ -114,7 +115,7 @@ printf "\e[38;5;82mInstall libre office Y, n\n\e[39m"
 read hard_utils
 if [[ $hard_utils != +("n"|"N"|"no"|"non") ]]
 then
-  yes y  | pacman -S inkscape gimp
+  yes y  | pacman -S libreoffice-fresh
 fi
 
 
@@ -139,7 +140,13 @@ cp -rf ./themes/arc-dark /usr/share/themes/Arc-Dark
 if [[ $creat_n_user == +("y"|"Y"|"yes") ]]
 then
   printf "\e[38;5;82mSetting Conf files \n\e[39m"
-  echo ./conf/fish-conf.fish > /home/$n_user_name/.config/fish/config.fish
+  if [[ ! -d "/home/$n_user_name/.config" ]]
+  then
+    mkdir "/home/$n_user_name/.config" #create the directory in user space
+    echo ./conf/fish-conf.fish > /home/$n_user_name/.config/fish/config.fish
+  else
+    echo ./conf/fish-conf.fish > /home/$n_user_name/.config/fish/config.fish
+  fi
   cp -f ./conf/tmux.conf /home/$n_user_name/.tmux.conf
 
 fi
