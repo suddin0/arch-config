@@ -84,14 +84,16 @@ yes "" | pacman -S xfce4-goodies
 
 #installing the softwares
 printf "\e[38;5;82mInstalling languages, libraries and varias other tools\n\e[39m"
-yes y  | pacman -S python python-setuptools python-pip sqlite mpdecimal xz tk
+yes y  | pacman -S python python-setuptools python-pip sqlite mpdecimal xz tk 
 yes y  | pacman -S python2 python2-setuptools python2-pip
 yes y  | pacman -S gcc clang thunar sakura file-roller libcanberra gvfs nautilus
-yes ""  | pacman -S vlc
+yes y  | pacman -S vim leafpad qt4
+yes ""  | pacman -S qt5
+yes "" | pacman -S vlc
 yes y  | pacman -S gdb valgrind 
-yes y  | pacman -S chromium pulseaudio pulseaudio-alsa pavucontrol wget
-yes ""  | pacman -S firefox
-yes y  | pacman -S vim leafpad tk qt4 qt5
+yes y  | pacman -S chromium pulseaudio pulseaudio-alsa pavucontrol wget ruby curl
+yes "" | pacman -S firefox
+yes y  | pacman -S pepper-flash
 
 
 #install Yaourt Package manager
@@ -127,7 +129,7 @@ then
   if [[ $MACHINE_TYPE == "x86_64" ]]
   then
     printf "\e[38;5;82mInstalling Virtual machine for x86_64 arch\n\e[39m"
-    wget "http://download.virtualbox.org/virtualbox/5.1.26/VirtualBox-5.1.26-117224-Linux_amd64.run" | sh
+    curl "http://download.virtualbox.org/virtualbox/5.1.26/VirtualBox-5.1.26-117224-Linux_amd64.run" | sh
   else
     printf "\e[38;5;82mInstalling Virtual machine for x86 arch\n\e[39m"
     wget "http://download.virtualbox.org/virtualbox/5.1.26/VirtualBox-5.1.26-117224-Linux_x86.run" | sh
