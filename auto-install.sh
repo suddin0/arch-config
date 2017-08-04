@@ -38,8 +38,6 @@ then
 fi
 
 
-
-
 printf "\e[38;5;82mWould you like to set your computer in French? y/N \e[39m"
 read -a lchoice
 if [[ $lchoice == +("y"|"Y"|"yes") ]];
