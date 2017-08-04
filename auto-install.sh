@@ -27,7 +27,7 @@ fi
 
 printf "\e[38;5;82m: Create a new user :  y, N\n\e[39m"
 read creat_n_user
-if [ [$creat_n_user == 'y'] || [$creat_n_user == 'Y'] || [$creat_n_user == "Yes"] ]
+if [[$creat_n_user == 'y'] || [$creat_n_user == 'Y'] || [$creat_n_user == "Yes"]]
 then
 	printf "\e[38;5;82m: New user name :\n\e[39m"
 	read n_user_name
