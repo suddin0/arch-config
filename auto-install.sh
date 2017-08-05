@@ -91,7 +91,7 @@ yes "" | pacman -S vlc
 yes y  | pacman -S gdb valgrind
 yes y  | pacman -S chromium pulseaudio pulseaudio-alsa pavucontrol wget ruby curl
 yes "" | pacman -S firefox
-yes y  | pacman -S pepper-flash
+yes y  | pacman -S pepper-flash transmission-gtk
 
 #graphic manipulation
 printf "\e[38;5;82mInstall image editor tooms like gimp, inkscape, etc... Y, n\n\e[39m"
@@ -136,6 +136,7 @@ yes y | pacman -Sy yaourt
 printf "\e[38;5;82mSetting themes on /usr/share/themes \n\e[39m"
 cp -rf ./themes/arc-dark /usr/share/themes/Arc-Dark
 
+#putting config files
 if [[ $creat_n_user == +("y"|"Y"|"yes") ]]
 then
   printf "\e[38;5;82mSetting Conf files \n\e[39m"
