@@ -91,7 +91,7 @@ yes "" | pacman -S vlc
 yes y  | pacman -S gdb valgrind
 yes y  | pacman -S chromium pulseaudio pulseaudio-alsa pavucontrol wget ruby curl
 yes "" | pacman -S firefox
-yes y  | pacman -S pepper-flash transmission-gtk
+yes y  | pacman -S pepper-flash transmission-gtk autofs udiskie
 
 #graphic manipulation
 printf "\e[38;5;82mInstall image editor tooms like gimp, inkscape, etc... Y, n\n\e[39m"
