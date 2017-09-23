@@ -73,7 +73,7 @@ yes y  | pacman -S xorg-xinit xorg-xterm dialog wpa_supplicant wpa_supplicant_gu
 yes y  | pacman -S networkmanager network-manager-applet dnsmasq bluez ppp dhclient
 yes y  | pacman -S modemmanager
 printf "\e[38;5;82mEnabling NetworkManager\n\e[39m"
-systemctl enable NetworkManaget.service
+systemctl enable NetworkManager.service
 
 #install the Desktop Environment
 printf "\e[38;5;82mInstalling Xfce4 environment and cie\n\e[39m"
