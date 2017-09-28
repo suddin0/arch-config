@@ -15,3 +15,6 @@ alias gadd="git add"
 alias gcom="git commit -m"
 alias gph="git push"
 
+#Get disk space of current directory and sub directory and sort it 
+
+alias dspace="du -sh ./* | sort -h"
