@@ -1,4 +1,11 @@
+#Terminal color #002448
+
 alias l="ls"
+alias lR="ls -R"
+alias laR="ls -aR"
+alias llaR="ls -alR"
+
+
 #aloas to check leaks
 alias leaks="valgrind --leak-check=yes --track-origins=yes"
 
@@ -16,5 +23,7 @@ alias gcom="git commit -m"
 alias gph="git push"
 
 #Get disk space of current directory and sub directory and sort it 
-
 alias dspace="du -sh ./* | sort -h"
+
+#useful commands
+alias del="rm -rf"

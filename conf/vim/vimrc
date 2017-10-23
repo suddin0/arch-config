@@ -1,0 +1,146 @@
+" encodeing
+set encoding=utf-8
+set fenc=utf-8
+set fileencodings=ucs-boms,utf-8,euc-jp,cp932
+scriptencoding utf-8 
+
+" use 4 spaces for tabs
+set tabstop=4 softtabstop=4 shiftwidth=4
+
+" display indentation guides
+set list listchars=tab:¤-,trail:·,extends:»,precedes:«,nbsp:×
+
+" View
+syntax on
+set showcmd
+set title
+set ruler
+set number
+set cursorline
+set showmatch
+set wrap
+set t_Co=256
+set colorcolumn=80
+set mouse=a
+
+" The color theme
+" set background=dark
+
+" colorscheme monokai
+" colorscheme srcery
+" colorscheme hacked_ayu
+" colorscheme happy_hacking
+" colorscheme idle 
+" colorscheme buddy 
+" colorscheme idle 
+ colorscheme maui
+
+" EXTRA COLORS GOT FROM https://github.com/rafi/awesome-vim-colorschemes
+" colorscheme 256_noir
+" colorschem abstract
+" colorschem afterglow
+" colorschem alduin
+" colorschem anderson
+" colorschem angr
+" colorschem apprentice
+" colorschem atom
+" colorschem buddy
+" colorschem deep-space
+" colorschem dracula
+" colorschem flatcolor
+" colorschem flattened_dark
+" colorschem flattened_light
+" colorschem focuspoint
+" colorschem github
+" colorschem gotham256
+" colorschem gotham
+" colorschem gruvbox
+" colorschem hacked_ayu
+" colorschem happy_hacking
+" colorschem hybrid_material
+" colorschem hybrid_reverse
+" colorschem hybrid
+" colorschem idle
+" colorschem jellybeans
+" colorschem lightning
+" colorschem lucid
+" colorschem lucius
+" colorschem materialbox
+" colorschem maui
+" colorschem meta5
+" colorschem minimalist
+" colorschem molokai
+" colorschem molokayo
+" colorschem monokai
+" colorschem OceanicNextLight
+" colorschem OceanicNext
+" colorschem onedark
+" colorschem one
+" colorschem orbital
+" colorschem PaperColor
+" colorschem paramount
+" colorschem parsec
+" colorschem pyte
+" colorschem rakr
+" colorschem rdark-terminal2
+" colorschem scheakur
+" colorschem seoul256-light
+" colorschem seoul256
+" colorschem sierra
+" colorschem solarized8_dark_flat
+" colorschem solarized8_dark_high
+" colorschem solarized8_dark_low
+" colorschem solarized8_dark
+" colorschem solarized8_light_flat
+" colorschem solarized8_light_high
+" colorschem solarized8_light_low
+" colorschem solarized8_light
+" colorschem space-dark
+" colorschem srcery
+" colorschem tender
+" colorschem termschool
+" colorschem twilight256
+" colorschem two-firewatch
+" colorschem wombat256mod
+
+
+" indent
+set smartindent
+set noexpandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=2
+set autoindent
+set smartindent
+set backspace=indent,eol,start
+
+" search
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+set wrapscan
+
+" Vim Plug
+""Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
+
+" Declare the list of plugins.
+Plug 'tpope/vim-sensible'
+Plug 'junegunn/seoul256.vim'
+
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+
+" Relative or absolute number lines
+function! NumberToggle()
+	if(&nu == 1)
+		set nu!
+		set rnu
+	else
+		set nornu
+		set nu
+	endif
+endfunction
+
+nnoremap <C-n> :call NumberToggle()<CR>
