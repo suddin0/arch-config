@@ -144,3 +144,6 @@ function! NumberToggle()
 endfunction
 
 nnoremap <C-n> :call NumberToggle()<CR>
+
+" If fzf is not installed then delete the below line.
+set rtp+=~/.fzf
