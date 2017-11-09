@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# This script downloads repos from the repo of the user indicated 
+# below. this is a some what alias
+
+prog=$0
+user="suddin0"
+
+if [ $# -eq 0 ]
+then
+  echo "[-] Error : Need at least one argument"
+  echo "[!] Usage : $prog <repo name>"
+  printf "\t[OR]\n"
+  echo "[!] Usage : $prog <repo name> <custom name>"
+elif [ $# -eq 1 ]
+then
+  git clone https://github.com/$user/$1.git 
+elif [ $# -eq 2 ]
+then
+  git clone https://github.com/$user/$1.git $2
+fi
