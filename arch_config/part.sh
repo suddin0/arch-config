@@ -18,9 +18,9 @@ function core_tools
 	yes "" | sudo  pacman -Syu > $NULL
 
 	N_WAR "Installing X utils for graphics"
-	yes "" | pacman -S xorg sudo gksudo \
-			 xorg-servers xorg-drivers \
-			 xorg-xinit xorg-xterm dialog > $NULL
+	yes "" | pacman -S xorg sudo gksu \
+			 xorg-server xorg-drivers \
+			 xorg-xinit xterm dialog > $NULL
 	INST_OK "Basic graphical libraries and tools"
 	
 	N_WAR "Installing network related tools"
