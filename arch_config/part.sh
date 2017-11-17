@@ -24,7 +24,7 @@ function core_tools
 	INST_OK "Basic graphical libraries and tools"
 	
 	N_WAR "Installing network related tools"
-	yes y  | pacman -S xorg-xinit xorg-xterm dialog
+	yes y  | pacman -S xorg-xinit xorg-xterm dialog \
 			 wpa_supplicant wpa_supplicant_gui \
 			 networkmanager network-manager-applet \
 			 dnsmasq bluez ppp dhclient \
