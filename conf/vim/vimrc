@@ -147,3 +147,14 @@ nnoremap <C-n> :call NumberToggle()<CR>
 
 " If fzf is not installed then delete the below line.
 set rtp+=~/.fzf
+
+
+
+
+func! Set_column_at_cursor()
+	let &cc=virtcol(".")
+endf
+
+nnoremap <C-f> :call Set_column_at_cursor() <CR>
+map <C-d> :set cc=80 <CR>
+map <C-s> :set cursorline! <CR>
