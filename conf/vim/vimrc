@@ -33,7 +33,9 @@ set mouse=a
 " colorscheme idle 
 " colorscheme buddy 
 " colorscheme idle 
- colorscheme maui
+
+" THE DEFUALT COLOR SCHEME 
+" colorscheme maui
 
 " EXTRA COLORS GOT FROM https://github.com/rafi/awesome-vim-colorschemes
 " colorscheme 256_noir
@@ -54,7 +56,7 @@ set mouse=a
 " colorschem github
 " colorschem gotham256
 " colorschem gotham
-" colorschem gruvbox
+ colorschem gruvbox
 " colorschem hacked_ayu
 " colorschem happy_hacking
 " colorschem hybrid_material
@@ -149,8 +151,6 @@ nnoremap <C-n> :call NumberToggle()<CR>
 set rtp+=~/.fzf
 
 
-
-
 func! Set_column_at_cursor()
 	let &cc=virtcol(".")
 endf
@@ -158,3 +158,42 @@ endf
 nnoremap <C-f> :call Set_column_at_cursor() <CR>
 map <C-d> :set cc=80 <CR>
 map <C-s> :set cursorline! <CR>
+
+
+" Split windo to right by default
+set splitright
+
+" Key map for navigating between split screens
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Key map for navigating between tabs
+nnoremap <C-S-Left> :tabprevious<CR>
+nnoremap <C-S-Right> :tabnext<CR>
+
+" Disable Arrow keys in Escape mode
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" Disable Arrow keys in Insert mode
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+
+"Disable Page Up and Down
+
+map <PageUp> <nop>
+map <PageDown> <nop>
+imap <PageUp> <nop>
+imap <PageDown> <nop>
+
+"Disable Delete and Backspace
+:inoremap <BS> <Nop>
+:inoremap <Del> <Nop>
+
