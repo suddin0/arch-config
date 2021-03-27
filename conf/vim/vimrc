@@ -24,7 +24,7 @@ set colorcolumn=80
 set mouse=a
 
 " The color theme
-" set background=dark
+set background=dark
 
 " colorscheme monokai
 " colorscheme srcery
@@ -173,32 +173,32 @@ map <C-l> <C-W>l
 nnoremap <C-S-Left> :tabprevious<CR>
 nnoremap <C-S-Right> :tabnext<CR>
 
-" Disable Arrow keys in Escape mode
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
-" Disable Arrow keys in Insert mode
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
-
-
-"Disable Page Up and Down
-
-map <PageUp> <nop>
-map <PageDown> <nop>
-imap <PageUp> <nop>
-imap <PageDown> <nop>
-
-"Disable Delete and Backspace
-:inoremap <BS> <Nop>
-:inoremap <Del> <Nop>
-
-"Press Ctrl-w to change modes
-:imap <C-W> <Esc>
+"" Disable Arrow keys in Escape mode
+"map <up> <nop>
+"map <down> <nop>
+"map <left> <nop>
+"map <right> <nop>
+"
+"" Disable Arrow keys in Insert mode
+"imap <up> <nop>
+"imap <down> <nop>
+"imap <left> <nop>
+"imap <right> <nop>
+"
+"
+""Disable Page Up and Down
+"
+"map <PageUp> <nop>
+"map <PageDown> <nop>
+"imap <PageUp> <nop>
+"imap <PageDown> <nop>
+"
+""Disable Delete and Backspace
+":inoremap <BS> <Nop>
+":inoremap <Del> <Nop>
+"
+""Press Ctrl-w to change modes
+":imap <C-W> <Esc>
 
 "Opens a visual explorer
 let g:netrw_banner = 0
